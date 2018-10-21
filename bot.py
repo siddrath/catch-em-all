@@ -11,6 +11,7 @@ from discord.ext import commands
 from PIL import Image, ImageDraw, ImageFont
 
 bot = commands.Bot(description='BAsics can do a lot more.....', command_prefix=commands.when_mentioned_or('p?'))
+bot.remove_command('help')
 
 
 class BAsics():
@@ -33,7 +34,7 @@ class BAsics():
     @commands.command(pass_contex=True)
     async def invite(self, ctx):
         ': Invite me '
-        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=394080286461263873&scope=bot&permissions=1543687243')
+        await ctx.send('https://discordapp.com/oauth2/authorize?client_id=481012071627096075&scope=bot&permissions=2146958847')
 
     @commands.command()
     async def uptime(self,ctx):
@@ -132,43 +133,19 @@ class BAsics():
         x.save("SHIT.png")
         await ctx.send(file=discord.File("SHIT.png"))
         os.system("rm SHIT.png")
+    
+       @bot.command(pass_context=True)
+       async def help(ctx):
+        """: help commands"""
+        embed = discord.Embed(title=f'''commands''', description=f'''pikachu bot prefix : p?''',color=discord.Colour.dark_red())
+        embed.set_thumbnail(url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv16_7xeYF7jboCqijoHf2SzQrBgszZ90YzWP0klBCa-dyu6TnrA')
+        embed.add_field(name='Fun Commands :', value=f'''' rps 8ball bite bribe butts calculated cuddle poke daddy flirt hug insult dog kiss love pat pizza slap updog sword wanted profile ''', inline=False)
+        embed.add_field(name='pokedex :', value=f''' pokemon''', inline=False)
+        embed.add_field(name='search :', value=f''' youtube wikipedia ''', inline=False)
+        embed.add_field(name=' server :', value=f'''Serverinfo invite server avatar''', inline=False)
+        embed.add_field(name=' Whats New :', value=f''' Now i will welcome users through DMS when they join server by default no need to set it everytime for every server''', inline=False)
+        await ctx.send(embed=embed)
 
-
-
-class BAmath():
-
-    @commands.command()
-    async def fact(self, ctx, num: int):
-        ': Get factorial of any number '
-        if num < 0:
-            await ctx.send('Sorry, factorial does not exist for negative numbers')
-        elif num == 0:
-            await ctx.send('The factorial of 0 is 1')
-        else:
-            from math import factorial
-            await ctx.send(f'''The factorial of {num} is : ```{factorial(num)}```''')
-    @commands.command()
-    async def add(self, ctx, num: int, num2: int):
-        ': Add two numbers'
-        await ctx.send(num + num2)
-
-    @commands.command()
-    async def factor(self, ctx, num: int):
-        ': Find prime factors '
-        await ctx.send('Factors are:')
-        i = 1
-        while i <= num:
-            k = 0
-            if (num % i) == 0:
-                j = 1
-                while j <= i:
-                    if (i % j) == 0:
-                        k = k + 1
-                    j = j + 1
-                if k == 2:
-                    await ctx.send('`1`')
-                    await ctx.send(f'''`{i}`''')
-            i = i + 1
 
 
 class BAdmin():
@@ -356,7 +333,9 @@ async def on_message(msg):
 
     else:
         return
-
+@bot.listen()
+async def on_member_join(member):
+    await member.send(f"{member.name}Welcome to {member.guild.name}")
 
 
 @bot.event
@@ -366,18 +345,9 @@ async def on_member_join(member):
             await channel.edit(name=f'Member Count: {len(member.guild.members)}')
 
 
-@bot.event
-async def on_member_remove(member):
-    if member.guild.id == 453472827526479874:
-        channel = member.guild.get_channel(485835315194363925)
-        await channel.edit(name=f'Member Count: {len(member.guild.members)}')
 
 
-@bot.event
-async def on_message(msg):
-    if 'firebasic' in msg.content.lower():
-        await msg.channel.send('Yup I am here!!')
-    await bot.process_commands(msg)
+
 
 
 
@@ -387,13 +357,12 @@ async def on_ready():
     bot.load_extension("fun")
     bot.load_extension("search")
     bot.load_extension('ExampleRepl')
-    options = ('help via f!help', 'to ꧁ Garry꧂#2508', f'on {len(bot.guilds)} servers')
+    options = ('help via p?help', 'to ꧁ Garry꧂#2508', f'on {len(bot.guilds)} servers')
     while True:
         await bot.change_presence(activity=discord.Streaming(name=random.choice(options), url='https://www.twitch.tv/cohhcarnage'))
         await asyncio.sleep(10)
 
 
 bot.add_cog(BAdmin())
-bot.add_cog(BAmath())
 bot.add_cog(BAsics())
 bot.run(os.getenv('TOKEN'))
