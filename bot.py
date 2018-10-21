@@ -1067,7 +1067,7 @@ async def on_ready():
 
 
 
-bot.run("NDgxMDEyMDcxNjI3MDk2MDc1.Dn1cdQ.HUr3LrA72CZLUCnNSBYv5ecqJwU")
+
 
 
 bot.add_cog(BAdmin())
