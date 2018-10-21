@@ -10,7 +10,7 @@ import random
 from discord.ext import commands
 from PIL import Image, ImageDraw, ImageFont
 
-bot = commands.Bot(description='BAsics can do a lot more.....', command_prefix=commands.when_mentioned_or('f!'))
+bot = commands.Bot(description='BAsics can do a lot more.....', command_prefix=commands.when_mentioned_or('p?'))
 
 
 class BAsics():
@@ -18,7 +18,7 @@ class BAsics():
     @commands.command()
     async def owner(self, ctx):
         ': Name of my creator'
-        await ctx.send('My owner is <@392337139309871106> ')
+        await ctx.send('My owner is <@481012071627096075> ')
         await ctx.message.delete()
 
     @commands.command()
@@ -304,12 +304,59 @@ async def reload(ctx, extension):
         await ctx.send("```You can't do it buddy you better know it```")
 
 
+
 @bot.event
 async def on_command_error(ctx, err):
-    if ctx.guild.id == 394087011641851905:
-        await ctx.channel.send(f'''```py\n{type(err).__name__}: {err!s}```''')
+    if ctx.guild.id == 494725137476616202:
+
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+
+    if ctx.guild.id == 490190146843443201:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+
+    if ctx.guild.id == 453472827526479874:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
+
+    if ctx.guild.id == 457729395122241537:
+        await ctx.channel.send(f'''_\n{type(err).__name__}: {err!s}_''')
     else:
         return
+    
+@bot.event
+async def on_message(msg):
+    if 'gay' in msg.content.lower():
+        await msg.add_reaction(emoji= "😎")
+        await msg.add_reaction(emoji= "🎂")
+        await msg.add_reaction(emoji= "🎉")
+        await msg.add_reaction(emoji= "🎅")
+    await bot.process_commands(msg)
+
+    if 'hi' in msg.content.lower():
+        await msg.add_reaction(emoji= "👻")
+        await msg.add_reaction(emoji= "👋")
+        await msg.add_reaction(emoji= "😎")
+        await bot.process_commands(msg)
+
+    if 'hey' in msg.content.lower():
+        await msg.add_reaction(emoji= "🙌")
+        await msg.add_reaction(emoji= "👋")
+        await msg.add_reaction(emoji= "😎")
+        await bot.process_commands(msg)
+
+    if 'hello' in msg.content.lower():
+        await msg.add_reaction(emoji= "🎃")
+        await msg.add_reaction(emoji= "👋")
+        await msg.add_reaction(emoji= "😎")
+        await bot.process_commands(msg)
+
+    if 'server' in msg.content.lower():
+        await msg.add_reaction(emoji= "💢")
+        await msg.add_reaction(emoji= "❔")
+        await bot.process_commands(msg)
+
+    else:
+        return
+
 
 
 @bot.event
@@ -340,7 +387,7 @@ async def on_ready():
     bot.load_extension("fun")
     bot.load_extension("search")
     bot.load_extension('ExampleRepl')
-    options = ('help via f!help', 'to !👑!Fire Feathers!👑!#2636', f'on {len(bot.guilds)} servers')
+    options = ('help via f!help', 'to ꧁ Garry꧂#2508', f'on {len(bot.guilds)} servers')
     while True:
         await bot.change_presence(activity=discord.Streaming(name=random.choice(options), url='https://www.twitch.tv/cohhcarnage'))
         await asyncio.sleep(10)
