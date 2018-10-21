@@ -31,7 +31,8 @@ bot.remove_command('help')
 os.chdir(r'C:\Users\BALA SAI\Desktop\snoopy')
 
 
-
+class BAsics():
+    
 @bot.command()
 async def owner(ctx):
     ': Name of my creator'
@@ -245,6 +246,8 @@ async def perms(ctx, user: discord.Member = None):
             mess.append("\u274C {}".format(i[0]))
     embed = discord.Embed(title = f'''{user.name} 's permissions in the server are: ''',description ="\n".join(mess), color = discord.Colour.dark_purple())
     await ctx.send(embed=embed)
+    
+class BAdmin():
 
 @bot.command()
 async def kick(ctx, member: discord.Member, *, reason):
@@ -1039,6 +1042,5 @@ async def on_ready():
 
 
 bot.add_cog(BAdmin())
-bot.add_cog(BAmath())
 bot.add_cog(BAsics())
 bot.run(os.getenv('TOKEN'))
